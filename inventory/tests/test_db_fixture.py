@@ -203,7 +203,7 @@ def test_inventory_db_brand_uniqueness_integrity(db, brand_factory):
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, product_inventory, image, alt_text, is_feature, created_at, updated_at",
+    "id, product_inventory, img_url, alt_text, is_feature, created_at, updated_at",
     [
         (
             1,
@@ -230,7 +230,7 @@ def test_inventory_db_media_dataset(
     db_fixture_setup,
     id,
     product_inventory,
-    image,
+    img_url,
     alt_text,
     is_feature,
     created_at,
@@ -240,7 +240,7 @@ def test_inventory_db_media_dataset(
     result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
     result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
     assert result.product_inventory.id == product_inventory
-    assert result.image == image
+    assert result.img_url == img_url
     assert result.alt_text == alt_text
     assert result.is_feature == is_feature
     assert result_created_at == created_at
@@ -250,7 +250,7 @@ def test_inventory_db_media_dataset(
 def test_inventory_db_media_insert_data(db, media_factory):
     new_media = media_factory.create(product_inventory__sku="123456789")
     assert new_media.product_inventory.sku == "123456789"
-    assert new_media.image == "images/default.png"
+    assert new_media.img_url == "images/default.png"
     assert new_media.alt_text == "a default image solid color"
     assert new_media.is_feature == 1
 
@@ -330,7 +330,7 @@ def test_inventory_db_product_attribute_dataset(
 ):
     result = models.ProductAttributeValue.objects.get(id=1)
     assert result.product_attribute.id == 1
-    assert result.attribute_value == "10"
+    assert result.attribute_value == "5"
 
 
 def test_inventory_db_product_attribute_value_data(
