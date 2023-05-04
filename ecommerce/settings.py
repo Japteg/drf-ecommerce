@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     # External apps
     'mptt',
     'django_elasticsearch_dsl',
+    'rest_framework',
     # Internal apps
     'dashboard',
     'inventory',
     'demo',
+    'drf',
 ]
 
 MIDDLEWARE = [
